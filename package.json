@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "name": "Chow",
+  "private": true,
+  "devDependencies": {
+    "express": "~4.12.4",
+    "unirest": "0.0.4"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "request": "~2.51.0",
+    "unirest": "0.0.4"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
