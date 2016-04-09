@@ -24,10 +24,20 @@ function showIngredients(ingredients){
 	var html = '';
 	
 	ingredients.forEach(function(ingredient){
-		html += '<li class="ingredient_item">'+ingredient+'</li>';
+		html += '<li id="'+ingredient+'_div" class="ingredient_item">'+ingredient+'<span class="delete_btn" onClick="deleteIngredient(\''+ingredient+'\')">X</span></li>';
 	});
 	
 	$('#ingredient_list').html(html);
+}
+
+function deleteIngredient(ingredient){
+	var index =	ingredients.indexOf(ingredient);
+	console.log(index);
+	
+	if (index > -1) {
+		ingredients.splice(index, 1);
+	}
+	showIngredients(ingredients);
 }
 
 function findRecipes(){
@@ -77,5 +87,38 @@ function showRecipes(recipes){
 }
 
 function openRecipe(id){
+	console.log(id);
 	
+	var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/'+id+'/information';
+	
+	$.ajax({
+		url: url,
+		data: {},
+		success: function(data) { 
+			console.log(data);
+			var ingredients = data.extendedIngredients;
+			
+			
+			
+			var html = '';
+			html += '<div class="recipe_title">'+data.title+'</div>';
+			html += '<a href="'+data.sourceUrl+'"><img class="recipe_img" src="'+data.image+'"/></a>';
+			html += '<div class="ingredient_list">';
+			html += '<h2>Ingredients</h2>';
+			ingredients.forEach(function(ingredient){
+				html += '<div class="ingredient">'+ingredient.name+'</div>'
+			});
+			html += '</div>';
+			html += '<div>'+data.title+'</div>';
+			html += '<div>'+data.title+'</div>';
+			$('#recipe_info').html(html);
+			
+			$('#recipe_container').hide();
+			$('#recipe_info').show();
+		},
+		error: function(err) { alert(err); },
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader("X-Mashape-Authorization", "DGNAwDSl06mshutpm0u9Z5fJLSkip18dIGRjsnZmB84UOW80ow");
+		}
+	});
 }
