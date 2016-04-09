@@ -1,5 +1,7 @@
-$(function(){
-	$("#ingredient_form").submit(function(e){
+
+$(function () {
+	'use strict';
+	$("#ingredient_form").submit(function (e) {
 		return false;
 	});
 	$('#ingredient_input').focus();
@@ -7,7 +9,7 @@ $(function(){
 
 var ingredients = [];
 
-function addIngredient(){
+function addIngredient() {
 	var newIngredient = $('#ingredient_input').val();
 	if(newIngredient != '' && ingredients.indexOf(newIngredient) == -1){
 		ingredients.push(newIngredient);
@@ -24,7 +26,7 @@ function showIngredients(ingredients){
 	var html = '';
 	
 	ingredients.forEach(function(ingredient){
-		html += '<li id="'+ingredient+'_div" class="ingredient_item">'+ingredient+'<span class="delete_btn" onClick="deleteIngredient(\''+ingredient+'\')">X</span></li>';
+		html += '<li id="'+ingredient+'_div" class="ingredient_item"><span class="ingredient_name">'+ingredient+'</span><span class="delete_btn" onClick="deleteIngredient(\''+ingredient+'\')"><img class="delete_img" src="app/images/close-box.png"/></span></li>';
 	});
 	
 	$('#ingredient_list').html(html);
@@ -44,7 +46,7 @@ function findRecipes(){
 
 	var ingredients = [];
 	
-	$('li').each(function(item){
+	$('.ingredient_item').each(function(item){
 		ingredients.push($( this ).text());
 	});
 	
@@ -53,7 +55,7 @@ function findRecipes(){
 		list += item+'%2C';
 	});
 	
-	var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients='+list+'&limitLicense=false&number=5&ranking=1';
+	var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients='+list+'&limitLicense=false&number=5&ranking=2';
 	
 	console.log(url);
 	
@@ -62,7 +64,7 @@ function findRecipes(){
 		data: {},
 		success: function(data) { 
 			showRecipes(data);
-			
+			console.log(data);
 		},
 		error: function(err) { alert(err); },
 		beforeSend: function(xhr) {
@@ -98,8 +100,6 @@ function openRecipe(id){
 			console.log(data);
 			var ingredients = data.extendedIngredients;
 			
-			
-			
 			var html = '';
 			html += '<div class="recipe_title">'+data.title+'</div>';
 			html += '<a href="'+data.sourceUrl+'"><img class="recipe_img" src="'+data.image+'"/></a>';
@@ -109,8 +109,6 @@ function openRecipe(id){
 				html += '<div class="ingredient">'+ingredient.name+'</div>'
 			});
 			html += '</div>';
-			html += '<div>'+data.title+'</div>';
-			html += '<div>'+data.title+'</div>';
 			$('#recipe_info').html(html);
 			
 			$('#recipe_container').hide();
@@ -121,4 +119,9 @@ function openRecipe(id){
 			xhr.setRequestHeader("X-Mashape-Authorization", "DGNAwDSl06mshutpm0u9Z5fJLSkip18dIGRjsnZmB84UOW80ow");
 		}
 	});
+}
+
+function toIngredients(){
+	$("#recipe_container").hide();
+	$("#ingredient_container").show();
 }

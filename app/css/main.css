@@ -49,6 +49,7 @@ html,body{
 	margin:30px 50px;
 	overflow:auto;
 	display:flex;
+    flex-wrap: wrap;
 }
 
 #add_ingredient_btn{
@@ -85,7 +86,6 @@ html,body{
 }
 
 .delete_btn{
-	padding-left: 20px;
 	cursor:pointer;
 }
 
@@ -146,6 +146,24 @@ html,body{
 .ingredient_list{
 	width:500px;
 	margin:10px 200px;
+}
+
+.ingredient_name{
+	position:relative;
+	bottom:5px;
+}
+
+.delete_img{
+	max-width: 25px;
+	position:relative;
+	left: 18px;
+    top: 2px;
+}
+
+.back_btn{
+	max-height:30px;
+	cursor:pointer;
+	float:left;
 }
 
 ::-webkit-scrollbar {
