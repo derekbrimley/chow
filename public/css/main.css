@@ -8,7 +8,6 @@ html,body{
 
 #header{
 	font-size:20pt;
-	width:100%;
 	background-color: #0097A7;
 	color:#FFF;
 	padding:20px;
@@ -68,10 +67,21 @@ html,body{
 	width: 100%;
     height: 45px;
 	font-size:20pt;
+	margin-left:20px;
 }
 
 #find_recipes_btn[disabled]{
-	background-color: aliceblue;
+	
+	flex:3;
+	cursor:auto;
+}
+
+.type_input{
+	flex:1;
+}
+
+#ingredient_submit{
+	display:flex;
 }
 
 .ingredient_item{
@@ -91,7 +101,6 @@ html,body{
 
 .recipe{
 	margin:50px auto;
-	border: 1px solid black;
 	cursor:pointer;
 }
 
@@ -108,7 +117,6 @@ html,body{
 }
 
 #recipe_container{
-	display:none;
 	margin:50px auto;
 	width:50%;
 	height:500px;
@@ -124,13 +132,17 @@ html,body{
 	flex-wrap:wrap;
 }
 
-#recipe_info{
-	display:none;
+#recipe_info_container{
 	margin:50px auto;
 	width:50%;
 	height:500px;
 	padding:20px;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#recipe_info{
+	overflow:auto;
+	height:480px;
 }
 
 .recipe_title{
