@@ -61,7 +61,7 @@ var showRecipes = function (recipes) {
     var html = '';
     recipes.forEach(function (recipe) {
         html += '<div class="recipe" onClick="openRecipe(' + recipe.id + ')">';
-        html += '<img class="recipe_img" src="' + recipe.image + '"/>';
+        html += '<img title="Click for recipe info" class="recipe_img" src="' + recipe.image + '"/>';
         html += '<div class="recipe_title">' + recipe.title + '</div>';
         html += '</div>';
     });
@@ -84,7 +84,7 @@ var findRecipes = function () {
         list += item + '%2C';
     });
 
-    var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=' + list + '&limitLicense=false&number=5&ranking=';
+    var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=' + list + '&limitLicense=false&number=20&ranking=';
 
     var type = $('#query_type').val();
 	console.log(type);
@@ -122,13 +122,16 @@ var openRecipe = function (id) {
 
             var html = '';
             html += '<div class="recipe_title">' + data.title + '</div>';
-            html += '<a target="_blank" href="' + data.sourceUrl + '"><img class="recipe_img" src="' + data.image + '"/></a>';
+            html += '<a title="Click to go to recipe" target="_blank" href="' + data.sourceUrl + '"><img class="recipe_img" src="' + data.image + '"/></a>';
             html += '<div class="ingredient_list">';
             html += '<h2>Ingredients</h2>';
             recipeIngredients.forEach(function (ingredient) {
                 html += '<div class="ingredient">' + ingredient.name + '</div>';
             });
             html += '</div>';
+			html += '<div>';
+			
+			html += '</div>';
             $('#recipe_info').html(html);
 
             $('#recipe_container').hide();
