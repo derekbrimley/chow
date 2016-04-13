@@ -123,6 +123,10 @@ var openRecipe = function (id) {
             var html = '';
             html += '<div class="recipe_title">' + data.title + '</div>';
             html += '<a title="Click to go to recipe" target="_blank" href="' + data.sourceUrl + '"><img class="recipe_img" src="' + data.image + '"/></a>';
+			html += '<a class="pin_btn" data-pin-do="buttonPin" data-pin-color="red" data-pin-count="above" data-pin-tall="true" target="_blank" href="https://www.pinterest.com/pin/create/button/' + 
+				'?url=' + encodeURIComponent(data.sourceUrl) + 
+				'&media=' + encodeURIComponent(data.image) + 
+				'&description=' + encodeURIComponent(data.title) + '"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_28.png" /></a>';
             html += '<div class="ingredient_list">';
             html += '<h2>Ingredients</h2>';
             recipeIngredients.forEach(function (ingredient) {
